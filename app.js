@@ -1,9 +1,11 @@
 var express = require('express');
 var fs = require('fs');
+var solution = require('./uniquePizzaToppingsSolution.js');
 var app = express();
 var port = 7499;
 
 var toppings;
+var output;
 
 
 app.get('/', function(req, res) {
@@ -16,9 +18,16 @@ app.listen(port, function() {
 
 
 
+toppings = JSON.parse(fs.readFileSync('./pizzas.json', 'UTF8'));
 
-fs.readFile('./pizzas.json', 'UTF8', function(err, data) {
-  console.log("reader ran");
-  toppings = data;
-  console.log(typeof toppings);
+
+
+console.log(typeof toppings);
+output = solution.getPopularSets(toppings);
+console.log(output);
+
+
+fs.writeFile('./result.txt', JSON.stringify(output), function(err) {
+  if(err) throw err;
+  console.log('WRITTTTEN');
 });

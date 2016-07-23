@@ -1,4 +1,4 @@
-function getPopularSets(orders, limit, quantity, strict){
+var getPopularSets = function (orders, limit, quantity, strict){
 
   var ranks = {};
 
@@ -32,4 +32,8 @@ function getPopularSets(orders, limit, quantity, strict){
     });
 
   return result;
+}
+
+module.exports = {
+  getPopularSets: getPopularSets
 }
